@@ -13,17 +13,11 @@ class CreateClientesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipoclientes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->comment('Nombre del tipo cliente');
-            $table->text('description')->nullable();
-            $table->timestamps();
-        });
 
         Schema::create('clientes', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('tipoc_id')->default( \App\TipoCliente::MENUDEO);
-            $table->foreign('tipoc_id')->references('id')->on('tipoclientes');
+            $table->foreign('tipoc_id')->references('id')->on('tipo_clientes');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('direccion')->nullable();

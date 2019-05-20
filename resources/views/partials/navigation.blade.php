@@ -21,7 +21,7 @@
                     @include('partials.navigations.' . \App\User::navigation())
 
 
-                  
+
                 </ul>
             </div>
         </div>
