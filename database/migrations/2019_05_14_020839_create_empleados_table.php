@@ -17,18 +17,22 @@ class CreateEmpleadosTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('idusuario');
             $table->foreign('idusuario')->references('id')->on('users');
-            $table->unsignedInteger('idpersona');
-            $table->foreign('idpersona')->references('id')->on('personas');
-            $table->string('tipodocumento');
+            $table->unsignedInteger('cliente_id');
+            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->string('tipo_documento', 6)->default('CC');
             $table->string('numdocumento',30);
             $table->string('direccion');
+            $table->unsignedInteger('idciudad')->default(1);
+            $table->foreign('idciudad')->references('id')->on('ciudads');
             $table->string('celular');
             $table->string('telefono');
-            $table->string('cargo',20);
+            $table->string('cargo',20)->default('MENSAJERO');
             $table->string('observacion');
             $table->timestamps();
         });
     }
+
+
 
     /**
      * Reverse the migrations.

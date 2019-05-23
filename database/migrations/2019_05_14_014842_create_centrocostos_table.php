@@ -15,8 +15,8 @@ class CreateCentrocostosTable extends Migration
     {
         Schema::create('centrocostos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('idpersona');
-            $table->foreign('idpersona')->references('id')->on('personas');
+            $table->unsignedInteger('idempresa')->nullable();
+            $table->foreign('idempresa')->references('id')->on('empresas');
             $table->string('nombrecc', 30);
             $table->timestamps();
             $table->softDeletes();

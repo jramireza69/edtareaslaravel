@@ -2,6 +2,7 @@
 
 namespace App;
 
+use http\Client;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -65,9 +66,7 @@ class Vd extends Model
     const COMPLETADO=3;
     const RECIBIDO=4;
 
-    public function persona () {
-        return $this->belongsTo(Persona::class)->select('id', 'nombre');
-    }
+
     public function centrocosto () {
         return $this->belongsTo(Centrocosto::class)->select('id', 'nombrecc');
     }
@@ -76,5 +75,14 @@ class Vd extends Model
     }
     public function destino () {
         return $this->belongsTo(Destino::class)->select('id','ndestino');
+    }
+    public function empleados () {
+        return $this->belongsTo(Empleado::class);
+    }
+    public function clientes () {
+        return $this->belongsTo(Cliente::class);
+    }
+    public function users () {
+        return $this->belongsToMany(User::class);
     }
 }

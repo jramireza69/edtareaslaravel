@@ -15,9 +15,9 @@ class CreateVdsTable extends Migration
     {
         Schema::create('vds', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('idpersona');
-            $table->foreign('idpersona')->references('id')->on('personas');
-            $table->unsignedInteger('idcentro_costos');
+            $table->unsignedInteger('idcliente');
+            $table->foreign('idcliente')->references('id')->on('clientes');
+            $table->unsignedInteger('idcentro_costos')->default(1);
             $table->foreign('idcentro_costos')->references('id')->on('centrocostos');
             $table->unsignedInteger('idarticulo');
             $table->foreign('idarticulo')->references('id')->on('articulos');

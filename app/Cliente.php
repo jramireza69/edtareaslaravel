@@ -41,5 +41,8 @@ class Cliente extends Model
     public function tipoc () {
         return $this->belongsTo(TipoCliente::class);
     }
+    public function vd () {
+        return $this->hasMany(Vd::class);
+    }
 
 }

@@ -20,6 +20,8 @@ class CreateClientesTable extends Migration
             $table->foreign('tipoc_id')->references('id')->on('tipo_clientes');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->string('tipo_documento', 6)->default('NIT');
+            $table->string('num_documento', 10)->unique()->nullable();
             $table->string('direccion')->nullable();
             $table->unsignedInteger('idciudad')->default(1);
             $table->foreign('idciudad')->references('id')->on('ciudads');

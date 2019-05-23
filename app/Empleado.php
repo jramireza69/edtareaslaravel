@@ -38,5 +38,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Empleado extends Model
 {
-    //
+    public function vd (){
+        return $this->hasMany(Vd::class);
+    }
+
 }

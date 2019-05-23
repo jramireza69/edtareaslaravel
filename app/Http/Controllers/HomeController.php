@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Vd;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+       // return view('home');
+        $vds = Vd::withCount('users')
+
+        ->with( 'clientes','destino','users')
+
+            ->where('condicion', Vd::PENDIENTE)
+            ->where('idempleado', 8)
+            ->latest()
+            ->paginate();
+        dd($vds);
     }
 }

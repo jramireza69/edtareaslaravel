@@ -11,6 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        Storage::deleteDirectory('users');
+
+        Storage::makeDirectory('users');
+
+
         factory(\App\Role::class,1)->create(['name'=>'admin']);
         factory(\App\Role::class,1)->create(['name'=>'mensajero']);
         factory(\App\Role::class,1)->create(['name'=>'cliente']);
@@ -28,8 +34,24 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@mail.com',
             'password' => bcrypt('secret'),
             'role_id' => \App\Role::ADMIN
-        ]);
+        ])
+          ->each(function (\App\User $u){
+          factory(\App\Cliente::class,1)->create(['user_id' => $u->id]);});
 
+        factory(\App\User::class,50)->create()
+            ->each(function (\App\User $u) {
+                factory(\App\Cliente::class, 1)->create(['user_id' => $u->id]);
+            });
+
+        factory(\App\Categoria::class,3)->create();
+        factory(\App\Articulo::class, 3)->create();
+
+        factory(\App\Cliente::class,5)->create();
+        factory(\App\Destino::class,5)->create();
+        factory(\App\Empresa::class,3)->create();
+        factory(\App\Centrocosto::class,2)->create();
+        factory(\App\Empleado::class,15)->create();
+        factory(\App\Vd::class,15)->create();
 
     }
 }

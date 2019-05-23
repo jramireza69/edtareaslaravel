@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTablePersonaUser extends Migration
+class CreateTableVdUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateTablePersonaUser extends Migration
      */
     public function up()
     {
-        Schema::create('table_persona_user', function (Blueprint $table) {
-            $table->unsignedInteger('idpersona');
-            $table->foreign('idpersona')->references('id')->on('personas');
+        Schema::create('table_vd_user', function (Blueprint $table) {
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedInteger('vd_id');
+            $table->foreign('vd_id')->references('id')->on('vds');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateTablePersonaUser extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_persona_user');
+        Schema::dropIfExists('table_vd_user');
     }
 }
